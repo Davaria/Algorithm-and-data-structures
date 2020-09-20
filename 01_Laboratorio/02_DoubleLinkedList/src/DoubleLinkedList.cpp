@@ -22,7 +22,7 @@ void DoubleLinkedList<T>::insert(T value, int pos)
   Nodo<T> *cursor = head;
   Nodo<T> *newNode = new Nodo<T>(value);
   Nodo<T> *after = nullptr;
-  if (pos == 0 || size == 0 || size < pos)
+  if (pos == 0 || size == 0 || size <= pos)
   {
     if (size == 0)
     {
@@ -30,7 +30,7 @@ void DoubleLinkedList<T>::insert(T value, int pos)
       tail = newNode;
       size++;
     }
-    else if (size < pos)
+    else if (size <= pos)
     {
       tail = last();
       newNode->setPrev(tail);
@@ -46,12 +46,9 @@ void DoubleLinkedList<T>::insert(T value, int pos)
       size++;
     }
   }
-  else
+  else if (size > pos)
   {
     int account{0};
-    if (pos > size)
-      pos = size - 1;
-    cout << "El tamaño de la posicion es: " << pos << endl;
     while (cursor != nullptr)
     {
       if (++account == pos)
@@ -75,7 +72,14 @@ void DoubleLinkedList<T>::remove(int pos)
 {
   Nodo<T> *cursor = head;
   Nodo<T> *NodoRem;
-  if (pos == 0 || size == 1)
+  if (!size)
+    cout << "No existen elementos en nuestra lista" << endl;
+  else if (size == 1)
+  {
+    delete head;
+    size--;
+  }
+  else if (pos == 0)
   {
     head = head->getNext();
     head->setPrev(nullptr);
@@ -120,14 +124,18 @@ int DoubleLinkedList<T>::search(T value)
 template <typename T>
 void DoubleLinkedList<T>::print()
 {
-  Nodo<T> *cursor = head;
-  cout << "El tamano de la lista " << this->size << endl;
-  while (cursor != nullptr)
+  if (size)
   {
-    cout << cursor->getElement() << " ";
-    cursor = cursor->getNext();
+    Nodo<T> *cursor = head;
+    while (cursor != nullptr)
+    {
+      cout << cursor->getElement() << " ";
+      cursor = cursor->getNext();
+    }
+    cout << endl;
   }
-  cout << endl;
+  else
+    cout << "No existen elementos en nuestra lista" << endl;
 }
 
 template <typename T>

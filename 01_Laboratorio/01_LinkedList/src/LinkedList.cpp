@@ -15,14 +15,13 @@ LinkedList<T>::LinkedList(T value)
 }
 
 template <typename T>
-void LinkedList<T>::insert(T value, int position)
+void LinkedList<T>::insert(T value, int pos)
 {
   Nodo<T> *newNodo = new Nodo<T>(value);
   Nodo<T> *cursor = head;
   Nodo<T> *previous = nullptr;
-  if (position == 0 || size == 0)
+  if (pos == 0 || size == 0)
   {
-
     if (!size)
     {
       head = new Nodo<T>(value);
@@ -40,7 +39,7 @@ void LinkedList<T>::insert(T value, int position)
     int account{0};
     while (cursor != nullptr)
     {
-      if (account++ == position)
+      if (account++ == pos)
         break;
       previous = cursor;
       cursor = cursor->getNext();
@@ -57,7 +56,9 @@ void LinkedList<T>::remove(int pos)
 {
   Nodo<T> *cursor = head;
   Nodo<T> *NodoRem;
-  if (pos == 0 || size == 1)
+  if (!size)
+    cout << "No hay elementos en nuestro lista!!" << endl;
+  else if (pos == 0 || size == 1)
   {
     head = head->getNext();
     delete cursor;
@@ -69,7 +70,6 @@ void LinkedList<T>::remove(int pos)
     int account{0};
     if (size <= pos)
       pos = size - 1;
-    cout << pos << endl;
     while (cursor != nullptr)
     {
       if (++account == pos)
@@ -102,7 +102,6 @@ template <typename T>
 void LinkedList<T>::print()
 {
   Nodo<T> *cursor = head;
-  cout << "El tamano de la lista " << this->size << endl;
   while (cursor != nullptr)
   {
     cout << cursor->getElement() << " ";
