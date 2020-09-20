@@ -6,10 +6,9 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-
   DoubleLinkedList<char> charlis;
   charlis.insert('C', 1000);
-  charlis.insert('C', 10000000);
+  charlis.insert('C', 2);
   charlis.print();
 
   // charlis.remove(0);

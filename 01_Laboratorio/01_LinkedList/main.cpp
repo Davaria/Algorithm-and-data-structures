@@ -6,16 +6,9 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-  // LinkedList<char> charlis('Z');
   LinkedList<char> charlis;
   charlis.insert('A', 0);
-  charlis.insert('B', 1);
-  charlis.remove(0);
-  charlis.remove(0);
-  charlis.remove(0);
-  charlis.remove(0);
-  charlis.remove(0);
-  charlis.print();
-
+  LinkedList<int> intlis;
+  intlis.insert(10, 3);
   return 0;
 }
