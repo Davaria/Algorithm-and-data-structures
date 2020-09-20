@@ -101,11 +101,17 @@ int LinkedList<T>::search(T value)
 template <typename T>
 void LinkedList<T>::print()
 {
-  Nodo<T> *cursor = head;
-  while (cursor != nullptr)
+  if (size)
   {
-    cout << cursor->getElement() << " ";
-    cursor = cursor->getNext();
+
+    Nodo<T> *cursor = head;
+    while (cursor != nullptr)
+    {
+      cout << cursor->getElement() << "->";
+      cursor = cursor->getNext();
+    }
+    cout << endl;
   }
-  cout << endl;
+  else
+    cout << "No existen elementos en nuestra lista" << endl;
 }
